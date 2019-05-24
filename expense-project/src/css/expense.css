@@ -102,3 +102,23 @@
   width: 100%;
 }
 
+
+
+
+/* nawin */
+
+.content-wrapper{
+  height: 100vh;
+  background: #F2F8FF;
+  padding-top: 2em;
+}
+
+
+.wrapper-t{
+  display: flex;
+}
+
+.box-daily-expense{
+  width: 100%;
+}
+
