@@ -9,7 +9,7 @@ class Header extends Component {
                 <div className="header container">
                     <div className="nav-brand">
                         Expense App
-                        </div>
+                    </div>
                     <div className="nav">
                         <div className="nav-list">
                             <li>Login</li>
