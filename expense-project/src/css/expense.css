@@ -118,7 +118,109 @@
   display: flex;
 }
 
-.box-daily-expense{
-  width: 100%;
+.daily-expense{
+  flex-basis: 100%;
 }
 
+.graph-expense{
+  flex-grow: 0;
+}
+
+.summary-chart{
+  width:200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.box-daily-expense{
+  width: 100%;
+  background: white;
+  height: auto;
+  border-radius: 0.5em;
+  box-shadow: 0 -1px 23px 14px rgba(0, 0, 0, 0.05);
+}
+
+.box-daily-expense{
+  padding: 1em;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.header-daily-expense{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+  padding-bottom: 1em;
+}
+.label{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.expense-list-wrapper{
+  margin-top: 1.2em;
+}
+.expense-list-item{
+  width: 100%;
+  margin:1em 0em;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+}
+
+.icon-withdraw{
+  display: flex;
+  flex-basis: 50px;
+  justify-content :center;
+  color:#D75555;
+}
+.icon-deposit{
+  flex-basis: 50px;
+  display: flex;
+  justify-content :center;
+  color:#4A90E2;
+}
+
+.expense-description{
+  flex-grow: 3;
+}
+
+.add-expense-btn{
+  border:none;
+  background:#FB9190;
+  text-align: center;
+  color:white;
+  border-radius: 50px;
+  padding:5px 10px;
+}
+
+.expense-description h6{
+  font-size: 1.14em;
+  font-weight: 600;
+}
+
+.expense-description p{
+  font-size: 0.8em;
+  color: rgba(39, 39, 39, 0.767);
+}
+
+.chart-wrapper{
+  background: white;
+  box-shadow: 0 -1px 23px 14px rgba(0, 0, 0, 0.05);
+  height: auto;
+  border-radius: 0.5em;
+  margin-left:1em;
+  padding: 1em;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.14em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.topic-chart{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+  padding-bottom: 1em;
+  text-align: center;
+}
