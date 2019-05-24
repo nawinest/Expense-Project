@@ -2,26 +2,38 @@ import request from '../../utils/request'
 
 export const exp = {
   state: {
-    data:[]
+    expenseData:[]
   },
   reducers: {
-    // // setAuthenticated(state, payload) {
-    //   return {
-    //     ...state,
-    //     isAuthenticated: payload
-    //   }
-    // },
+    setExpenseItems(state, payload) {
+      return {
+        ...state,
+        expenseData: payload
+      }
+    }
   },
   effects: (dispatch) => ({
 
-    async getLogin(payload,rootState){
+    async getTransaction(payload,rootState){
       // get username/password by id
-      const id='5ce62da5bd19770013f34f19'
+      const user_id='5ce62da5bd19770013f34f19'
+      // /transactions?user=:user
       // console.log(payload)
-      const res = await request.get(`/users/${id}`)
-      console.log('get login info')
-      console.log("username : "+res.data.username)
-      console.log("password : "+res.data.password)
+      const res = await request.get(`/transactions?user=${user_id}`)
+      console.log(res)
+      const cleanData = res.data.map((item) => {
+        return {
+          trans_id:   item._id,
+          user_id :   item.user,
+          amount  :   item.amount,
+          type    :   item.type,
+          remark  :   item.remark,
+          date    :   item.date,
+        }
+      })
+      dispatch.exp.setExpenseItems(cleanData)
+      console.log(this.state)
+      
     },
 
     async createTransaction(payload,rootState){
@@ -32,37 +44,56 @@ export const exp = {
           // "type": enum["income", "expense"],
           // "remark": String,
           // "date": Date
-          // user    : payload.id,
+          // user    : payload.user_id,
           // amount  : payload.amount,
           // type    : payload.type,
           // remark  : payload.remark,
-          // date    : payload.date
+          // date    : date
           user    : '5ce62da5bd19770013f34f19',
-          amount  : '10000',
-          type    : 'income',
-          remark  : 'employing cost',
-          date    : date
+          amount  : 15,
+          type    : 'expense',
+          remark  : 'motorcycle service',
+          date    :  date
       }
       console.log(info)
       // console.log(payload)
-      const res = await request.post('/users/login',info)
-      const token = res.data._id
-      console.log(token)
-      dispatch.user.setToken(token)
-      // dispatch.user.toggleShowExpense()
-      // console.log(res)
-      // dispatch.user.getLogin()
+      const res = await request.post('/transactions',info)
+      console.log(res)
     },
 
-    async getTransaction(){
-      const id='5ce62da5bd19770013f34f19'
-      const res = await request.get(`/transactions?user=${id}`)
+    async updateTransaction(payload,rootState){
+      // const trans_id = payload.trans_id
+      const trans_id ='5ce7a1ffbd19770013f34f1b'
+      const date = new Date()
+      const info = {
+          // "user": userID,
+          // "amount": Number,
+          // "type": enum["income", "expense"],
+          // "remark": String,
+          // "date": Date
+          // user    : payload.user_id,
+          // amount  : payload.amount,
+          // type    : payload.type,
+          // remark  : payload.remark,
+          // date    : date
+          user    : '5ce62da5bd19770013f34f19',
+          amount  : 7888,
+          type    : 'income',
+          remark  : 'motorcycle service',
+          date    :  date
+      }
+      console.log(info)
+      // console.log(payload)
+      const res = await request.put(`/transactions/${trans_id}`,info)
+      console.log(res)
+    },
+
+    async deleteTransaction(payload,rootState){
+      // const trans_id = payload.trans_id
+      const trans_id='5ce7a1ffbd19770013f34f1b'
+      const res = await request.delete(`/transactions/${trans_id}`)
+      console.log(res)
     }
 
   }),
-  // selectors: {
-  //   isAuthenticated () {
-  //     return(rootState,props) => rootState.user.token !== null
-  //   }
-  // }
 } //export exp
