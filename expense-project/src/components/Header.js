@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from "react-router-dom";
 import '../css/header.css'
 class Header extends Component {
     state = {}
@@ -12,7 +13,9 @@ class Header extends Component {
                         </div>
                     <div className="nav">
                         <div className="nav-list">
-                            <li>Login</li>
+                            <li style={{'cursor':'pointer'}}>
+                                <Link to="/login" >Login</Link>
+                            </li>
                             <li>Sign Up</li>
                         </div>
 
@@ -24,4 +27,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);

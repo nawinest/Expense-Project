@@ -1,3 +1,59 @@
+
+/* html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+} */
+                      
+
+.app-login {
+  display:flex;
+  justify-content: center; 
+  align-items: center; 
+  /* flex-direction: column; */
+  height: 100%;
+}
+
+
+.column {
+  flex-direction: column;
+}
+
+.grow{
+  flex:1;
+}
+
+.login-container {
+  width: 1000px;
+  height: 520px;
+  margin: 50px auto;
+  display: flex;
+  /* padding-top:  10%; */
+  /* padding-top:  30%; */
+}
+
+.login-left {
+  display: flex;
+  height: 100%;
+  flex:1 300px;
+}
+
+.login-right {
+  height: 100%;
+  flex:4;
+}
+
+.login-content {
+  display: flex;
+}
+
+
+
+
+
+
+
 .app-grid {
   display: grid;
   grid-template-columns: auto;
@@ -18,13 +74,7 @@
   grid-row-end: 3;
 }
 
-.row {
-  flex-direction: row;
-}
 
-.column {
-  flex-direction: column;
-}
 
 .column-side {
   flex    : 50%;
@@ -88,9 +138,7 @@
   grid-row-end: 7;
 }
 
-.grow{
-  flex:grow;
-}
+
 
 ::placeholder {
   color: #979797;
@@ -122,7 +170,12 @@
 
 .center-item{
   align-items: center;
-  /* justify-self: center; */
+  justify-items: center;
+}
+
+.center-content{
+  align-items: center;
+  justify-content: center;
 }
 
 .align-item-between{
