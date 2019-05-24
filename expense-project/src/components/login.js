@@ -42,47 +42,48 @@ class login extends Component {
     logout()
   }
 
+  //     <div className='column-side grid
+  //                     center-item height-top
+  //                     light-1'>
+  //       <p className='label 
+  //                     grow 
+  //                     center-self
+  //                     light-2'>
+  //         Login side
+  //       </p>
 
-  // onClick={() => this.props.handleToggle()}
-  //<p className='username grow light-2'>Username</p>
-  //<p className='password grow light-2'>Password</p>
+  //       <input  type='text'
+  //               name='username'
+  //               className='username input-front' 
+  //               placeholder="Username"
+  //               onChange={this.handleChange}/>
+  //       <input  type='text'
+  //               name='password'
+  //               className='password input-front' 
+  //               placeholder="Password"
+  //               onChange={this.handleChange}/>
+  //       {!isShowExpense ?
+  //       <input  type="button" 
+  //               className='form-button input-button'
+  //               value='Sign in'
+  //               onClick={this.handleLogin}/>
+  //       : 
+  //       <input  type="button" 
+  //               className='form-button input-button'
+  //               value='Sign out'
+  //               onClick={this.handleLogout}/>
+  //       }
+
+  // // onClick={() => this.props.handleToggle()}
+  // //<p className='username grow light-2'>Username</p>
+  // //<p className='password grow light-2'>Password</p>
   render() {
-    const {
-      isShowExpense
-    } = this.props.user
+    // const {
+    //   isShowExpense
+    // } = this.props.user
 
     return (
-      <div className='column-side grid
-                      center-item height-top
-                      light-1'>
-        <p className='label 
-                      grow 
-                      center-self
-                      light-2'>
-          Login side
-        </p>
-
-        <input  type='text'
-                name='username'
-                className='username input-front' 
-                placeholder="Username"
-                onChange={this.handleChange}/>
-        <input  type='text'
-                name='password'
-                className='password input-front' 
-                placeholder="Password"
-                onChange={this.handleChange}/>
-        {!isShowExpense ?
-        <input  type="button" 
-                className='form-button input-button'
-                value='Sign in'
-                onClick={this.handleLogin}/>
-        : 
-        <input  type="button" 
-                className='form-button input-button'
-                value='Sign out'
-                onClick={this.handleLogout}/>
-        }
+      <div>
 
       </div>
     )
