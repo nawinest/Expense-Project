@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import '../css/logup.css'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import '../css/logup.css'
+import Background from '../img/businessman-character-meditating_1012-332.jpg'
 
 class login extends Component {
-
-
   state = {
     username: '',
     password: '',
@@ -14,118 +14,93 @@ class login extends Component {
   handleChange = (e, field) => {
     //react web but not compatible with react native
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-
   handleLogin = async () => {
-    const {
-      // login
-      // getLogin
-      login
-    } = this.props;
-    
+    const { login } = this.props
+
     try {
       // await login(this.state)
       await login(this.state)
       console.log('login success')
+      if (this.props.user.user_id) {
+        this.props.history.push('/expense')
+      }
     } catch (e) {
       console.log('login fail')
     }
   }
 
-  handleLogout = () =>{
-    const {
-      logout
-    } = this.props
-    logout()
-  }
-
-        // {/* <p className='label 
-        //               grow 
-        //               center-self
-        //               light-2'>
-        //   Login side
-        // </p>
-
-        // <input  type='text'
-        //         name='username'
-        //         className='username input-front' 
-        //         placeholder="Username"
-        //         onChange={this.handleChange}/>
-        // <input  type='text'
-        //         name='password'
-        //         className='password input-front' 
-        //         placeholder="Password"
-        //         onChange={this.handleChange}/>
-        // {!isShowExpense ?
-        // <input  type="button" 
-        //         className='form-button input-button'
-        //         value='Sign in'
-        //         onClick={this.handleLogin}/>
-        // : 
-        // <input  type="button" 
-        //         className='form-button input-button'
-        //         value='Sign out'
-        //         onClick={this.handleLogout}/>
-        // } */}
-  // onClick={() => this.props.handleToggle()}
-  //<p className='username grow light-2'>Username</p>
-  //<p className='password grow light-2'>Password</p>
-
-// 
-
-        // <div className='login-container
-        //                  center-self
-        //                  dark-1'>
-        //  </div>
-
   render() {
-    // const {
-    //   isShowExpense
-    // } = this.props.user
-
     return (
-      <div className='app-login'>
-       <div className="login-container">
-          <div className='login-left column center-content'>
-            <div className='login-content column'>
-              <div> 
-                Username
+      <div className="app-login">
+        <div className="login-container light-2">
+          <div className="login-left column center-column">
+            <div className="login-left-container column ">
+              <div className="login-left-content center-self">
+                <h2 className="head-margin">Welcome Back</h2>
               </div>
-              <div> 
-                Password
+              <div className="login-left-content">Username</div>
+              <div className="login-left-content">
+                <input
+                  type="text"
+                  name="username"
+                  className="input-text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
               </div>
-              <div> 
-                Password
+              <div className="login-left-content">Password</div>
+              <div className="login-left-content">
+                <input
+                  type="text"
+                  name="password"
+                  className="input-text"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
               </div>
-              <div> 
-                Password
+              <div className="login-left-content">
+                <input
+                  type="button"
+                  className="input-button"
+                  value="Sign In"
+                  onClick={this.handleLogin}
+                />
+              </div>
+              <div className="login-left-content center-self">
+                <hr />
+              </div>
+              <div className="login-left-content center-self">
+                <p>
+                  Dont't have account?
+                  <Link to="/signup">Sign Up</Link>
+                </p>
               </div>
             </div>
           </div>
-          <div className='login-right light-2'></div>
+          <div className="login-right center-content" >
+            <img className='image' alt='back' src={Background}/>
+          </div>
         </div>
-       </div>
-
-      
+      </div>
     )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return state
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    // login: dispatch.user.login
-    // getLogin: dispatch.user.getLogin
-    login : dispatch.user.login,
-    logout: dispatch.user.logout
+    login: dispatch.user.login,
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps) (login)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(login))
