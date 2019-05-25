@@ -8,20 +8,32 @@ import React, { Component } from 'react';
 import Header from "./components/Header";
 import Homepage from "./pages/Homepage";
 
+import store from './store';
+import { Provider } from 'react-redux';
+
+
+
 class App extends Component {
   state = {}
+  
+  componentDidMount(){
+    store.dispatch.user.loadUser()
+  }
+  
   renderRouter() {
     return (
       <div>
-        <Router>
-          <Header />
-          <div>
-            <Route exact path="/" component={Loginpage} />
-            <Route path="/login" component={Loginpage} />
-            <Route path="/signup" component={Signuppage} />
-            <Route path="/expense" component={Expensepage} />
-          </div>
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <Header />
+            <div>
+              <Route exact path="/" component={Homepage} />
+              <Route path="/login" component={Loginpage} />
+              <Route path="/signup" component={Signuppage} />
+              <Route path="/expense" component={Expensepage} />
+            </div>
+          </Router>
+        </Provider>
       </div>
 
     )

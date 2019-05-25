@@ -3,66 +3,57 @@ import request from '../../utils/request'
 export const user = {
   state: {
     user_id: null,
-    // isAuthenticated: false
+    isAuthenticated: false,
+    username : ''
   },
   reducers: {
     setUser(state, payload) {
+      localStorage.setItem('token', payload.user_id)
+      localStorage.setItem('username', payload.username)
       return {
         ...state,
-        user_id: payload,
+        user_id: payload.user_id,
+        isAuthenticated : true,
       }
     },
+    logout(state , payload){
+      localStorage.removeItem('token')
+      localStorage.removeItem('username')
+      return {
+        ...state,
+        user_id: null,
+        isAuthenticated : false,
+      }
+    },loadUser(state ,payload){
+      return {
+        ...state, 
+        user_id : localStorage.getItem('token'),
+        username : localStorage.getItem('username')
+      }
+    }
   },
   effects: (dispatch) => ({
-    async getLogin(payload, rootState) {
-      // get username/password by id
-      const id = payload
-      // console.log(payload)
-      const res = await request.get(`/users/${id}`)
-      console.log('get login info')
-      console.log('username : ' + res.data.username)
-      console.log('password : ' + res.data.password)
-    },
 
     async login(payload, rootState) {
       const info = {
         username: payload.username,
         password: payload.password,
-        // username: 'test33',
-        // password: 'test33',
       }
-      console.log(info)
-      // console.log(payload)
       const res = await request.post('/users/login', info)
       const user_id = res.data._id
-      console.log(user_id)
-      dispatch.user.setUser(user_id)
-      dispatch.user.getLogin(user_id)
-      // dispatch.user.toggleShowExpense()
-      // console.log(res)
-      // dispatch.user.getLogin()
+      const username = res.data.username
+      dispatch.user.setUser({user_id, username})
+      dispatch.user.loadUser()
     },
 
     async signup(payload, rootState) {
-      const info = {
+      const info = { //test33
         username: payload.username,
-        password: payload.password,
-        // username  : 'test33',
-        // password  : 'test33'
+        password: payload.password
       }
-      console.log(info)
-      // console.log(payload)
       const res = await request.post('/users', info)
-      const user_id = res.data._id
-      console.log(user_id)
-      dispatch.user.setUser(user_id)
-    },
-
-    async logout(payload, rootState) {
-      // dispatch.class.reducer
-      // dispatch.user.setAuthenticated(false)
-      dispatch.user.setUser(null)
-    },
+      dispatch.user.setUser(res.data)
+    }
   }),
   selectors: {
     isAuthenticated() {

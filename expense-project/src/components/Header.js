@@ -4,20 +4,32 @@ import { connect } from 'react-redux'
 
 import '../css/header.css'
 class Header extends Component {
-  state = {}
+  state = {
+
+  }
+
+  componentDidMount() {
+    this.props.loadUser()
+
+  }
 
   handleLogout = () => {
-    const { logout } = this.props
+    const { logout , loadUser  } = this.props
     logout()
+    loadUser()
     this.props.history.push('/')
   }
 
   render() {
-    const { user } = this.props
-    let isLogin = false
-    if (user.user_id) {
-      isLogin = true
+    let isLogin = false;
+    let username = ''
+
+    if (this.props.user.username) {
+      console.log(this.props.user)
+      isLogin = true;
+      username = this.props.user.username
     }
+
     return (
       <div className="header-wrap  ">
         <div className="header container">
@@ -28,11 +40,15 @@ class Header extends Component {
                 {!isLogin ? (
                   <Link to="/login">Login</Link>
                 ) : (
-                  <li style={{'color':'#007BFF'}} onClick={this.handleLogout}>LogOut</li>
-                )}
+                  <Link to="/expense"><li style={{ 'color': '#007BFF' }}>{username}</li></Link>
+                  )}
               </li>
               <li style={{ cursor: 'pointer' }}>
-                <Link to="/signup">Sign Up</Link>
+                {!isLogin ? (
+                  <Link to="/signup">Sign Up</Link>
+                ) : (
+                    <li onClick={this.handleLogout}> Log out </li>
+                  )}
               </li>
             </div>
           </div>
@@ -42,13 +58,14 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
+const mapStateToProps = (state) => ({
+  user: state.user
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: dispatch.user.logout,
+    loadUser: dispatch.user.loadUser
   }
 }
 
