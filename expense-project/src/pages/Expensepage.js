@@ -8,7 +8,6 @@ class Expensepage extends Component {
     render() { 
         return ( 
         <div>
-            {/* <Expense/>     */}
             <ExpenseContent />
         </div> );
     }

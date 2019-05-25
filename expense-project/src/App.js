@@ -6,6 +6,7 @@ import Signuppage from './pages/Signuppage';
 import Expensepage from './pages/Expensepage';
 import React, { Component } from 'react';
 import Header from "./components/Header";
+import Homepage from "./pages/Homepage";
 
 class App extends Component {
   state = {}
@@ -15,7 +16,7 @@ class App extends Component {
         <Header />
         <Router>
           <div>
-            <Route exact path="/" component={Expensepage} />
+            <Route exact path="/" component={Homepage} />
             <Route path="/login" component={Loginpage} />
             <Route path="/signup" component={Signuppage} />
             <Route path="/expense" component={Expensepage} />
