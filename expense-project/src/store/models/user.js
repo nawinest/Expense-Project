@@ -2,88 +2,71 @@ import request from '../../utils/request'
 
 export const user = {
   state: {
-    // isAuthenticated : false,
-    token: null,
-    isShowExpense: false
+    user_id: null,
+    // isAuthenticated: false
   },
   reducers: {
-    // // setAuthenticated(state, payload) {
-    //   return {
-    //     ...state,
-    //     isAuthenticated: payload
-    //   }
-    // },
-    setToken (state,payload) {
-      if(payload!==null){
-        return {
-          ...state,
-          token: payload,
-          isShowExpense: true
-        }
-      }
+    setUser(state, payload) {
       return {
         ...state,
-        token: payload,
-        isShowExpense: false
+        user_id: payload,
       }
-      
     },
-
   },
   effects: (dispatch) => ({
-
-    async getLogin(payload,rootState){
+    async getLogin(payload, rootState) {
       // get username/password by id
-      const id='5ce62da5bd19770013f34f19'
+      const id = payload
       // console.log(payload)
       const res = await request.get(`/users/${id}`)
       console.log('get login info')
-      console.log("username : "+res.data.username)
-      console.log("password : "+res.data.password)
+      console.log('username : ' + res.data.username)
+      console.log('password : ' + res.data.password)
     },
 
-    async login(payload,rootState){
+    async login(payload, rootState) {
       const info = {
-          username  : 'test33',
-          password  : 'test33'
+        username: payload.username,
+        password: payload.password,
+        // username: 'test33',
+        // password: 'test33',
       }
       console.log(info)
       // console.log(payload)
-      const res = await request.post('/users/login',info)
-      const token = res.data._id
-      console.log(token)
-      dispatch.user.setToken(token)
+      const res = await request.post('/users/login', info)
+      const user_id = res.data._id
+      console.log(user_id)
+      dispatch.user.setUser(user_id)
+      dispatch.user.getLogin(user_id)
       // dispatch.user.toggleShowExpense()
       // console.log(res)
       // dispatch.user.getLogin()
     },
 
-
     async signup(payload, rootState) {
       const info = {
-        username  : 'test33',
-        password  : 'test33'
+        username: payload.username,
+        password: payload.password,
+        // username  : 'test33',
+        // password  : 'test33'
       }
       console.log(info)
       // console.log(payload)
-      const res = await request.post('/users',info)
-      // const token = res.data._id
-      // console.log(token)
-      // dispatch.user.setToken(token)
-      console.log(res)
-
+      const res = await request.post('/users', info)
+      const user_id = res.data._id
+      console.log(user_id)
+      dispatch.user.setUser(user_id)
     },
 
     async logout(payload, rootState) {
       // dispatch.class.reducer
       // dispatch.user.setAuthenticated(false)
-      dispatch.user.setToken(null)
+      dispatch.user.setUser(null)
     },
-
   }),
   selectors: {
-    isAuthenticated () {
-      return(rootState,props) => rootState.user.token !== null
-    }
-  }
+    isAuthenticated() {
+      return (rootState, props) => rootState.user.user_id !== null
+    },
+  },
 } //export user

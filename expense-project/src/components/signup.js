@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import '../css/logup.css'
 import { connect } from 'react-redux'
 
-
 class signup extends Component {
-
-
   state = {
     username: '',
     password: '',
@@ -14,66 +12,82 @@ class signup extends Component {
   handleChange = (e, field) => {
     //react web but not compatible with react native
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-  handleLogin = async () => {
-    const {
-      signup
-    } = this.props;
+  handleSignup = async () => {
+    const { signup } = this.props
     try {
       await signup(this.state)
       console.log('signup success')
+      if (this.props.user.user_id) {
+        this.props.history.push('/expense')
+      }
     } catch (e) {
       console.log('signup fail')
     }
   }
 
-
-  //<p className='username grow light-2'>Username</p>
-  //<p className='password grow light-2'>Password</p>
   render() {
     return (
-      <div className='column-side grid
-                      center-item height-top
-                      light-2'>
-        <p className='label 
-                      grow 
-                      center-self
-                      light-1'>
-          Signup side
-        </p>
-
-        <input  type='text'
-                name='username'
-                className='username input-front' 
-                placeholder="Username"
-                onChange={this.handleChange}/>
-        <input  type='text'
-                name='password'
-                className='password input-front' 
-                placeholder="Password"
-                onChange={this.handleChange}/>
-        <input  type="button" 
-                className='form-button input-button'
-                value='Sign Up'
-                onClick={this.handleLogin}/>
-
+      <div className="app-login">
+        <div className="login-container center-content light-2">
+          <div className="signup-container column center-column  ">
+            <div className="login-left-container column ">
+              <div className="login-left-content center-self">
+                <h2 className="head-margin">Sign Up</h2>
+              </div>
+              <div className="login-left-content">Username</div>
+              <div className="login-left-content">
+                <input
+                  type="text"
+                  name="username"
+                  className="input-text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="login-left-content">Password</div>
+              <div className="login-left-content">
+                <input
+                  type="text"
+                  name="password"
+                  className="input-text"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="login-left-content">
+                <input
+                  type="button"
+                  className="input-button"
+                  value="Sign Up"
+                  onClick={this.handleSignup}
+                />
+              </div>
+              <div className="login-left-content center-self" />
+              <div className="login-left-content center-self" />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  // console.log(state)
+  return state
+}
 
-})
-
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signup: dispatch.user.signup
+    signup: dispatch.user.signup,
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps) (signup)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(signup))
