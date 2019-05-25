@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import { withRouter,Link } from 'react-router-dom'
 import '../css/header.css'
 class Header extends Component {
     state = {}
+
+    // onClick={() => this.props.history.push('/login')}>
+    // Login
+    // onClick={() => this.props.history.push('/signup')}>
+    // Sign Up
+    //<Link to="/login" >Login</Link>
+    //<Link to="/signup" >Sign Up</Link>
     render() {
+
         return (
             <div className="header-wrap  ">
 
@@ -12,10 +21,13 @@ class Header extends Component {
                     </div>
                     <div className="nav">
                         <div className="nav-list">
-                            <li>Login</li>
-                            <li>Sign Up</li>
+                            <li style={{'cursor':'pointer'}}>
+                                <Link to="/login" >Login</Link>
+                            </li>
+                            <li style={{'cursor':'pointer'}}>
+                                <Link to="/signup" >Sign Up</Link>
+                            </li>
                         </div>
-
                     </div>
                 </div>
 
@@ -24,4 +36,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);
