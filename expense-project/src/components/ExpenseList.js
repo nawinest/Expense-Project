@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 import ExpenseListItem from './ExpenseListItem';
+import { connect } from 'react-redux'
 class ExpenseList extends Component {
-    state = {  }
-    render() { 
-        return ( 
-        <div>
-            <ExpenseListItem />
-            <ExpenseListItem />
-            <ExpenseListItem />
-        </div> );
+    state = {}
+    componentDidMount(){
+       
+    }
+
+    render() {
+        
+        return (
+            <div>
+                <ExpenseListItem />
+                <ExpenseListItem />
+                <ExpenseListItem />
+            </div>);
     }
 }
- 
-export default ExpenseList;
+
+
+
+const mapStateToProps = (state) => ({
+   
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTransaction : dispatch.exp.getTransaction
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList)

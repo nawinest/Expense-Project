@@ -13,12 +13,8 @@ export const exp = {
     }
   },
   effects: (dispatch) => ({
-
-    async getTransaction(payload,rootState){
-      // get username/password by id
+    async getTransaction(payload, rootState){
       const user_id='5ce62da5bd19770013f34f19'
-      // /transactions?user=:user
-      // console.log(payload)
       const res = await request.get(`/transactions?user=${user_id}`)
       console.log(res)
       const cleanData = res.data.map((item) => {
@@ -32,8 +28,6 @@ export const exp = {
         }
       })
       dispatch.exp.setExpenseItems(cleanData)
-      console.log(this.state)
-      
     },
 
     async createTransaction(payload,rootState){

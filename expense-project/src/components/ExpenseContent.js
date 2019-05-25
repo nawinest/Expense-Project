@@ -6,6 +6,7 @@ import 'flatpickr/dist/themes/confetti.css'
 import Flatpickr from 'react-flatpickr'
 import ChartExpense from './ChartExpense';
 
+
 class ExpenseContent extends Component {
     state = {
         date: [new Date()]
@@ -38,7 +39,6 @@ class ExpenseContent extends Component {
                         <DailyExpense />
                     </div>
                     <div className="graph-expense">
-                        
                         <ChartExpense />
                     </div>
                 </div>
