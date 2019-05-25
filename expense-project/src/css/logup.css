@@ -89,7 +89,12 @@ div {font-size: 1em;}
 
 hr{
   color: #333333;
-  height: 2;
+  width: 100%;
+  margin: 0px;
+}
+
+.divider{
+  border-bottom: 5px solid red;
 }
 
 .input-button{
@@ -103,7 +108,13 @@ hr{
 }
 
 
-
+.signup-container {
+  display: flex;
+  height: 100%;
+  flex:1 300px;
+  /* padding-top:  10%; */
+  /* padding-top:  30%; */
+}
 
 
 .white {
@@ -123,7 +134,7 @@ hr{
   background-color: #e0e0e0;
 }
 
-.center-item{
+.center-content{
   align-items: center;
   /* justify-self: center; */
 }
