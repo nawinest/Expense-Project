@@ -1,17 +1,11 @@
-
-
-/* html, body {
-  height: 100%;
+div {
+  font-size: 1em;
 }
-body {
-  margin: 0;
-} */
-div {font-size: 1em;}                      
 
 .app-login {
-  display:flex;
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* flex-direction: column; */
   height: 100%;
 }
@@ -20,13 +14,13 @@ div {font-size: 1em;}
   flex-direction: column;
 }
 
-.center-column{
+.center-column {
   justify-content: center;
-  align-items:  center;
+  align-items: center;
 }
 
-.grow{
-  flex:1;
+.grow {
+  flex: 1;
 }
 
 .login-container {
@@ -34,19 +28,20 @@ div {font-size: 1em;}
   height: 520px;
   margin: 50px auto;
   display: flex;
-  /* padding-top:  10%; */
-  /* padding-top:  30%; */
+  border-radius: 25px;
 }
 
 .login-left {
   display: flex;
   height: 100%;
-  flex:1 300px;
+  flex: 1 300px;
 }
 
 .login-right {
+  display:flex;
   height: 100%;
-  flex:4;
+  flex: 4;
+  border-radius: 25px;
 }
 
 .login-left-container {
@@ -59,26 +54,26 @@ div {font-size: 1em;}
 }
 
 .login-left-content {
-  display:flex;
-  width:100%;
+  display: flex;
+  width: 100%;
   padding: 5px;
 }
 
-.center-self{
+.center-self {
   /* align-items: center; */
   justify-content: center;
 }
 
-.center-text{
+.center-text {
   text-align: center;
 }
 
-.head-margin{
-  margin: 0px 0px 40px
+.head-margin {
+  margin: 0px 0px 40px;
 }
 
-.input-text{
-  flex:1 ;
+.input-text {
+  flex: 1;
 }
 
 ::placeholder {
@@ -87,35 +82,36 @@ div {font-size: 1em;}
   font-weight: 500;
 }
 
-hr{
+hr {
   color: #333333;
   width: 100%;
   margin: 0px;
 }
 
-.divider{
-  border-bottom: 5px solid red;
+img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.input-button{
+.image {
+  width:90%
+}
+
+.input-button {
   height: 2em;
   color: white;
   cursor: pointer;
   background-color: #5041d4;
   border: none;
-  flex:1;
+  flex: 1;
   margin: 20px 0px 20px;
 }
-
 
 .signup-container {
   display: flex;
   height: 100%;
-  flex:1 300px;
-  /* padding-top:  10%; */
-  /* padding-top:  30%; */
+  flex: 1 300px;
 }
-
 
 .white {
   color: white;
@@ -125,7 +121,6 @@ hr{
   background-color: #333333;
 }
 
-
 .light-1 {
   background-color: #6e6e6e;
 }
@@ -134,23 +129,19 @@ hr{
   background-color: #e0e0e0;
 }
 
-.center-content{
+.center-content {
   align-items: center;
-  /* justify-self: center; */
 }
 
-.align-item-between{
+.align-item-between {
   align-items: center;
-  /* justify-items: ; */
 }
 
-.justify-item-center{
+.justify-item-center {
   justify-items: center;
-  /* justify-items: ; */
 }
 
-.stretch{
+.stretch {
   align-items: stretch;
   justify-items: stretch;
 }
-

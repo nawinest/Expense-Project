@@ -21,29 +21,19 @@ class signup extends Component {
     try {
       await signup(this.state)
       console.log('signup success')
-      if(this.props.user.user_id){
+      if (this.props.user.user_id) {
         this.props.history.push('/expense')
       }
-      // if (user.isShowExpense){
-      //   this.props.history.push('/expense')
-      // }
     } catch (e) {
       console.log('signup fail')
     }
   }
 
-  componentWillUpdate(prevProps, prevState) {
-    // console.log(prevProps.user)
-    // if(prevProps.user !== this.props.user){
-    //   this.props.history.push('/expense')
-    // }
-  }
-
   render() {
     return (
       <div className="app-login">
-        <div className="login-container center-content ">
-          <div className="signup-container column center-column">
+        <div className="login-container center-content light-2">
+          <div className="signup-container column center-column  ">
             <div className="login-left-container column ">
               <div className="login-left-content center-self">
                 <h2 className="head-margin">Sign Up</h2>
@@ -87,11 +77,8 @@ class signup extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return state
-  // return {
-  //   user_id : state.user.user_id
-  // }
 }
 
 const mapDispatchToProps = (dispatch) => {

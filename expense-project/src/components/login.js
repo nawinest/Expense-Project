@@ -3,6 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import '../css/logup.css'
+import Background from '../img/businessman-character-meditating_1012-332.jpg'
 
 class login extends Component {
   state = {
@@ -35,7 +36,7 @@ class login extends Component {
   render() {
     return (
       <div className="app-login">
-        <div className="login-container">
+        <div className="login-container light-2">
           <div className="login-left column center-column">
             <div className="login-left-container column ">
               <div className="login-left-content center-self">
@@ -80,7 +81,9 @@ class login extends Component {
               </div>
             </div>
           </div>
-          <div className="login-right light-2" />
+          <div className="login-right center-content" >
+            <img className='image' alt='back' src={Background}/>
+          </div>
         </div>
       </div>
     )
