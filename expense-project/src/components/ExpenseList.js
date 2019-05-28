@@ -3,7 +3,6 @@ import ExpenseListItem from './ExpenseListItem';
 import { connect } from 'react-redux'
 class ExpenseList extends Component {
     state = {}
-       
     componentDidMount() {
         this.props.getTransaction({user_id :localStorage.getItem('token')})
     }

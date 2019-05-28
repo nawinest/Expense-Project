@@ -9,6 +9,7 @@ class DailyExpense extends Component {
         amount: 0,
         remark: '',
         type: 'expense',
+        show: false
     }
     componentDidMount() {
 
@@ -23,6 +24,12 @@ class DailyExpense extends Component {
         this.setState({ ...this.state, [e.target.name]: e.target.value })
     }
 
+    handleShow = (e) => {
+        const stateShow = this.state.show
+        this.setState({show:!stateShow})
+    }
+    
+
     render() {
         console.log(this.props.date)
         return (
@@ -32,12 +39,12 @@ class DailyExpense extends Component {
                         Expense Daily
                     </div>
                     <div>
-                        <button className="add-expense-btn" onClick={this.show}>
+                        <button className="add-expense-btn" onClick={this.handleShow}>
                             <span className="icon-plus"><i className="fas fa-plus"></i></span> add
                         </button>
                     </div>
                 </div>
-                <div className="from-add-expense">
+                <div className={(this.state.show? "from-add-expense" : "nofrom-add-expense")}>
                     <form onSubmit={this.submitAdd}>
                         <div className="form-add-exp-wrapper">
                             <div className="form-left">
