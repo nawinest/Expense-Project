@@ -40,6 +40,7 @@ export const user = {
         password: payload.password,
       }
       const res = await request.post('/users/login', info)
+      console.log(info)
       const user_id = res.data._id
       const username = res.data.username
       dispatch.user.setUser({user_id, username})

@@ -4,6 +4,7 @@ export const exp = {
   state: {
     expenseData:[]
   },
+  
   reducers: {
     setExpenseItems(state, payload) {
       return {
@@ -14,9 +15,9 @@ export const exp = {
   },
   effects: (dispatch) => ({
     async getTransaction(payload, rootState){
-      const user_id='5ce62da5bd19770013f34f19'
+      const user_id=payload.user_id
       const res = await request.get(`/transactions?user=${user_id}`)
-      console.log(res)
+      // console.log(res)
       const cleanData = res.data.map((item) => {
         return {
           trans_id:   item._id,
@@ -25,39 +26,27 @@ export const exp = {
           type    :   item.type,
           remark  :   item.remark,
           date    :   item.date,
+          
         }
       })
       dispatch.exp.setExpenseItems(cleanData)
     },
 
     async createTransaction(payload,rootState){
-      const date = new Date()
+      const {user_id , type, amount , remark , date} = payload
       const info = {
-          // "user": userID,
-          // "amount": Number,
-          // "type": enum["income", "expense"],
-          // "remark": String,
-          // "date": Date
-          // user    : payload.user_id,
-          // amount  : payload.amount,
-          // type    : payload.type,
-          // remark  : payload.remark,
-          // date    : date
-          user    : '5ce62da5bd19770013f34f19',
-          amount  : 15,
-          type    : 'expense',
-          remark  : 'motorcycle service',
+          user    : user_id,
+          amount  : amount,
+          type    : type,
+          remark  :  remark ,
           date    :  date
       }
-      console.log(info)
-      // console.log(payload)
-      const res = await request.post('/transactions',info)
-      console.log(res)
+      await request.post('/transactions',info)
+      dispatch.exp.getTransaction({user_id:user_id})
     },
 
     async updateTransaction(payload,rootState){
-      // const trans_id = payload.trans_id
-      const trans_id ='5ce7a1ffbd19770013f34f1b'
+      const trans_id = payload.trans_id
       const date = new Date()
       const info = {
           // "user": userID,
@@ -70,23 +59,21 @@ export const exp = {
           // type    : payload.type,
           // remark  : payload.remark,
           // date    : date
-          user    : '5ce62da5bd19770013f34f19',
-          amount  : 7888,
-          type    : 'income',
-          remark  : 'motorcycle service',
+          user    : payload.user_id,
+          amount  : payload.amount,
+          type    : payload.type,
+          remark  : payload.remark,
           date    :  date
       }
       console.log(info)
-      // console.log(payload)
-      const res = await request.put(`/transactions/${trans_id}`,info)
-      console.log(res)
+      await request.put(`/transactions/${trans_id}`,info)
+      dispatch.exp.getTransaction({user_id:payload.user_id});
     },
 
     async deleteTransaction(payload,rootState){
-      // const trans_id = payload.trans_id
-      const trans_id='5ce7a1ffbd19770013f34f1b'
-      const res = await request.delete(`/transactions/${trans_id}`)
-      console.log(res)
+      const trans_id=payload.trans_id
+      await request.delete(`/transactions/${trans_id}`)
+      dispatch.exp.getTransaction({user_id:payload.user_id});
     }
 
   }),
