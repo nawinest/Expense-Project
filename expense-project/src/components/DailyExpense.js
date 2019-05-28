@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/expense.css'
 import { connect } from 'react-redux'
-import DatePicker from 'react-date-picker';
+// import DatePicker from 'react-date-picker';
 
 import ExpenseList from './ExpenseList';
 class DailyExpense extends Component {

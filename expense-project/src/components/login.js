@@ -22,7 +22,6 @@ class login extends Component {
     const { login } = this.props
     console.log('sss')
     try {
-      // await login(this.state)
       await login(this.state)
       console.log('login success')
       if (this.props.user.user_id) {

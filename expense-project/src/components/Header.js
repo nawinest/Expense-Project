@@ -8,6 +8,13 @@ class Header extends Component {
 
   }
 
+  componentDidUpdate(prevProps,prevState){
+    if(prevProps.user !== this.props.user){
+      this.setState({})
+    }
+
+  }
+
   componentDidMount() {
     this.props.loadUser()
 
