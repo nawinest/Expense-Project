@@ -249,3 +249,22 @@
   border : none;
   border-radius: 0.5em;
 }
+
+.exp-mode-btn-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.exp-button-active{
+  background-color: #3f3f3f;
+  /* border: none; */
+  color:white;
+  /* padding: 15px 32px; */
+  text-align: center;
+}
+.exp-button-inactive{
+  background-color: #979797;
+  color:black;
+}
+
