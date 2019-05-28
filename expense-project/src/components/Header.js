@@ -40,14 +40,14 @@ class Header extends Component {
                 {!isLogin ? (
                   <Link to="/login">Login</Link>
                 ) : (
-                  <Link to="/expense"><li style={{ 'color': '#007BFF' }}>{username}</li></Link>
+                  <Link to="/expense"><div style={{ 'color': '#007BFF' }}>{username}</div></Link>
                   )}
               </li>
               <li style={{ cursor: 'pointer' }}>
                 {!isLogin ? (
                   <Link to="/signup">Sign Up</Link>
                 ) : (
-                    <li onClick={this.handleLogout}> Log out </li>
+                    <div onClick={this.handleLogout}> Log out </div>
                   )}
               </li>
             </div>

@@ -116,14 +116,18 @@
 
 .wrapper-t{
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
 }
 
-.daily-expense{
-  flex-basis: 100%;
-}
-
-.graph-expense{
+.left-content-expense{
   flex-grow: 0;
+  padding-right:1em;
+}
+
+.right-content-expense{
+  flex-grow: 8;
 }
 
 .summary-chart{
@@ -132,7 +136,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 .box-daily-expense{
   width: 100%;
@@ -223,4 +226,26 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.226);
   padding-bottom: 1em;
   text-align: center;
+}
+
+.modal-edit {
+  position: absolute;
+  border-radius: 1em;
+  padding: 1em;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: papayawhip;
+}
+
+.close-btn-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn-edit{
+  border : none;
+  border-radius: 0.5em;
 }
