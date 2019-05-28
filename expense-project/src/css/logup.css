@@ -9,7 +9,9 @@ div {
   /* flex-direction: column; */
   height: 100%;
 }
-
+.column{
+  flex-direction: column;
+}
 
 .center-column {
   justify-content: center;
