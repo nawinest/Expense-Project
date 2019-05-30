@@ -10,11 +10,12 @@ class DailyExpense extends Component {
     amount: 0,
     remark: '',
     type: 'expense',
+    isShow: false
   }
 
-  
 
-  componentDidMount() {}
+
+  componentDidMount() { }
 
   submitAdd = (e) => {
     e.preventDefault()
@@ -31,15 +32,19 @@ class DailyExpense extends Component {
     this.setState({ ...this.state, [e.target.name]: e.target.value })
   }
 
+  showModal = () =>{
+    const isShowBuffer = this.state.isShow
+    this.setState({isShow:!isShowBuffer})
+  }
   render() {
     console.log(this.props.date)
 
-  return (
+    return (
       <div className="box-daily-expense">
         <div className="header-daily-expense">
           <div className="label">Expense Daily</div>
           <div>
-            <button className="add-expense-btn" onClick={this.show}>
+            <button className="add-expense-btn" onClick={this.showModal}>
               <span className="icon-plus">
                 <i className="fas fa-plus" />
               </span>{' '}
@@ -48,20 +53,20 @@ class DailyExpense extends Component {
           </div>
         </div>
         <div className="form-add-expense">
-          <form onSubmit={this.submitAdd}>
+          <form className={(this.state.isShow)? 'show':'dont_show'} onSubmit={this.submitAdd}>
             <div className="form-add-exp-wrapper">
               <div className="form-left">
                 <div className="expense-mode-btn-wrapper btn-container">
                   <input
                     type="button"
-                    className={ (this.state.type === 'income') ? 'exp-button-active' : 'exp-button-inactive' }
+                    className={(this.state.type === 'income') ? 'exp-button-active' : 'exp-button-inactive'}
                     name="type"
                     value="income"
                     onClick={(e) => this.handleChange(e)}
                   />
                   <input
                     type="button"
-                    className={ (this.state.type === 'expense') ? 'exp-button-active' : 'exp-button-inactive' }
+                    className={(this.state.type === 'expense') ? 'exp-button-active' : 'exp-button-inactive'}
                     name="type"
                     value="expense"
                     onClick={(e) => this.handleChange(e)}
@@ -70,7 +75,7 @@ class DailyExpense extends Component {
 
                 <div className='field-container'>
                   <div className='field-topic'>Amount</div>
-                  <input 
+                  <input
                     type="number"
                     name="amount"
                     className='minimal-input'

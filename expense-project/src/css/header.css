@@ -1,8 +1,9 @@
 .header-wrap {
-    height: 60px;
+    height: 80px;
     font-family: 'Nunito', sans-serif;
     background: #FFFFFF;
-    box-shadow: 0 -1px 23px 14px rgba(0, 0, 0, 0.105);
+    border-bottom: 0.7px solid rgb(240, 240, 240);
+   
 }
 
 .header {
@@ -14,6 +15,7 @@
 }
 
 .nav-brand {
+    color:rgb(124, 108, 204);
     font-weight: 800;
     font-size: 1.2em;
 }
@@ -27,6 +29,18 @@
 
 .nav-list li {
     width: 130px;
-    text-align: right;
+    text-align: center;
+    
+}
 
+.loginBtn{
+    color:black;
+}
+
+.signupBtn{
+    color:white;
+    background:#8577CE;
+    border:none;
+    border-radius: 0.25em;
+    padding: 5px;
 }

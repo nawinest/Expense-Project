@@ -3,7 +3,6 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import '../css/logup.css'
-import Background from '../img/businessman-character-meditating_1012-332.jpg'
 
 class login extends Component {
   state = {
@@ -34,54 +33,48 @@ class login extends Component {
 
   render() {
     return (
-      <div className="app-login">
-        <div className="login-container light-2">
-          <div className="login-left column center-column">
-            <div className="login-left-container column ">
-              <div className="login-left-content center-self">
-                <h2 className="head-margin">Welcome Back</h2>
-              </div>
-              <div className="login-left-content">Username</div>
-              <div className="login-left-content">
-                <input
-                  type="text"
-                  name="username"
-                  className="input-text"
-                  placeholder="Username"
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="login-left-content">Password</div>
-              <div className="login-left-content">
-                <input
-                  type="text"
-                  name="password"
-                  className="input-text"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="login-left-content">
-                <input
-                  type="button"
-                  className="input-button"
-                  value="Sign In"
-                  onClick={this.handleLogin}
-                />
-              </div>
-              <div className="login-left-content center-self">
-                <hr />
-              </div>
-              <div className="login-left-content center-self">
-                <p>
-                  Dont't have account?
-                  <Link to="/signup">Sign Up</Link>
-                </p>
-              </div>
-            </div>
+      <div className="container login-wrapper">
+        <div className="login-item login-panel">
+          <div className="topic-login-panel">
+            <h1>
+              Hello ~
+            </h1>
+            <p style={{textAlign:'center'}}> Sign in to your account</p>
           </div>
-          <div className="login-right center-content" >
-            <img className='image' alt='back' src={Background}/>
+          <div className="form-login-panel">
+            <div className="username-f">
+            
+              <input
+                type="text"
+                name="username"
+                className="input-text"
+                placeholder="Username"
+                onChange={this.handleChange}
+              />
+
+            </div>
+            <div className="password-f">
+           
+              <input
+                type="text"
+                name="password"
+                className="input-text"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+
+            </div>
+            <div className="submit-btn-login">
+           
+              <input
+                type="button"
+                className="input-submit-login"
+                value="Sign In"
+                onClick={this.handleLogin}
+              /></div></div>
+          <div className="signup-btn">
+              Dont't have account?
+             <Link to="/signup"> Sign Up</Link>
           </div>
         </div>
       </div>

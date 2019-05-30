@@ -8,8 +8,8 @@ class Header extends Component {
 
   }
 
-  componentDidUpdate(prevProps,prevState){
-    if(prevProps.user !== this.props.user){
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.user !== this.props.user) {
       this.setState({})
     }
 
@@ -21,7 +21,7 @@ class Header extends Component {
   }
 
   handleLogout = () => {
-    const { logout , loadUser  } = this.props
+    const { logout, loadUser } = this.props
     logout()
     loadUser()
     this.props.history.push('/')
@@ -40,19 +40,19 @@ class Header extends Component {
     return (
       <div className="header-wrap  ">
         <div className="header container">
-          <div className="nav-brand">Expense App</div>
+          <Link to="/"><div className="nav-brand">Expense App</div></Link>
           <div className="nav">
             <div className="nav-list">
-              <li style={{ cursor: 'pointer' }}>
+              <li style={{ cursor: 'pointer' }} >
                 {!isLogin ? (
-                  <Link to="/login">Login</Link>
+                  <Link to="/login"><div className="loginBtn">Sign in</div></Link>
                 ) : (
-                  <Link to="/expense"><div style={{ 'color': '#007BFF' }}>{username}</div></Link>
+                    <Link to="/expense"><div style={{ 'color': '#007BFF' }}>{username}</div></Link>
                   )}
               </li>
               <li style={{ cursor: 'pointer' }}>
                 {!isLogin ? (
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signup"><div className="signupBtn">Sign Up</div></Link>
                 ) : (
                     <div onClick={this.handleLogout}> Log out </div>
                   )}
