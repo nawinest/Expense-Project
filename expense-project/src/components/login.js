@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Pulse from 'react-reveal/Pulse';
 
 import '../css/logup.css'
 
@@ -33,51 +34,53 @@ class login extends Component {
 
   render() {
     return (
-      <div className="container login-wrapper">
-        <div className="login-item login-panel">
-          <div className="topic-login-panel">
-            <h1>
-              Hello ~
+      <Pulse>
+        <div className="container login-wrapper">
+          <div className="login-item login-panel">
+            <div className="topic-login-panel">
+              <h1>
+                Hello ~
             </h1>
-            <p style={{textAlign:'center'}}> Sign in to your account</p>
-          </div>
-          <div className="form-login-panel">
-            <div className="username-f">
-            
-              <input
-                type="text"
-                name="username"
-                className="input-text"
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-
+              <p style={{ textAlign: 'center' }}> Sign in to your account</p>
             </div>
-            <div className="password-f">
-           
-              <input
-                type="text"
-                name="password"
-                className="input-text"
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
+            <div className="form-login-panel">
+              <div className="username-f">
 
-            </div>
-            <div className="submit-btn-login">
-           
-              <input
-                type="button"
-                className="input-submit-login"
-                value="Sign In"
-                onClick={this.handleLogin}
-              /></div></div>
-          <div className="signup-btn">
+                <input
+                  type="text"
+                  name="username"
+                  className="input-text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+
+              </div>
+              <div className="password-f">
+
+                <input
+                  type="text"
+                  name="password"
+                  className="input-text"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+
+              </div>
+              <div className="submit-btn-login">
+
+                <input
+                  type="button"
+                  className="input-submit-login"
+                  value="Sign In"
+                  onClick={this.handleLogin}
+                /></div></div>
+            <div className="signup-btn">
               Dont't have account?
              <Link to="/signup"> Sign Up</Link>
+            </div>
           </div>
         </div>
-      </div>
+      </Pulse>
     )
   }
 }

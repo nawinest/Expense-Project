@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DailyExpense from './DailyExpense';
 
-
+import Zoom from 'react-reveal/Zoom';
 import 'flatpickr/dist/themes/confetti.css'
 import Flatpickr from 'react-flatpickr'
 import ChartExpense from './ChartExpense';
@@ -27,25 +27,31 @@ class ExpenseContent extends Component {
         return (
             <div className="content-wrapper">
                 <div className="container wrapper-t">
-                    <div className="left-content-expense">
-                        <Flatpickr
-                            style={styleTimePick}
-                            value={date}
-                            options={{
-                                inline:true,
-                                enableTime: false,
-                                dateFormat: "Y-m-d",
-                                // wrap: true
-                            }}
-                            onChange={date => { this.setState({ date }) }} />
+                    <Zoom top>
+                        <div className="left-content-expense">
+                            <Flatpickr
+                                style={styleTimePick}
+                                value={date}
+                                options={{
+                                    inline: true,
+                                    enableTime: false,
+                                    dateFormat: "Y-m-d",
+                                    // wrap: true
+                                }}
+                                onChange={date => { this.setState({ date }) }} />
 
-                    </div>
-                    <div className="right-content-expense">
-                        <DailyExpense date={this.state.date}/>
-                    </div>
+                        </div>
+                    </Zoom>
+                    <Zoom top>
+                        <div className="right-content-expense">
+                            <DailyExpense date={this.state.date} />
+                        </div>
+                    </Zoom>
                 </div>
                 <div className="container  graph-expense">
-                    <ChartExpense />
+                    <Zoom top>
+                        <ChartExpense />
+                    </Zoom>
                 </div>
             </div>);
     }
