@@ -1,105 +1,123 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import '../css/expense.css'
 import { connect } from 'react-redux'
-import DatePicker from 'react-date-picker';
 
-import ExpenseList from './ExpenseList';
+// import DatePicker from 'react-date-picker';
+
+import ExpenseList from './ExpenseList'
 class DailyExpense extends Component {
-    state = {
-        amount: 0,
-        remark: '',
-        type: 'expense',
-        show: false
-    }
-    componentDidMount() {
+  state = {
+    amount: 0,
+    remark: '',
+    type: 'expense',
+  }
 
-    }
+  
 
-    submitAdd = (e) => {
-        e.preventDefault();
-        this.props.createTransaction({date : this.props.date, user_id: localStorage.getItem('token'), amount: this.state.amount, remark: this.state.remark, type: this.state.type  })
-    }
+  componentDidMount() {}
 
-    handleChange = (e) => {
-        this.setState({ ...this.state, [e.target.name]: e.target.value })
-    }
+  submitAdd = (e) => {
+    e.preventDefault()
+    this.props.createTransaction({
+      date: this.props.date,
+      user_id: localStorage.getItem('token'),
+      amount: this.state.amount,
+      remark: this.state.remark,
+      type: this.state.type,
+    })
+  }
 
-    handleShow = (e) => {
-        const stateShow = this.state.show
-        this.setState({show:!stateShow})
-    }
-    
+  handleChange = (e) => {
+    this.setState({ ...this.state, [e.target.name]: e.target.value })
+  }
 
-    render() {
-        console.log(this.props.date)
-        return (
-            <div className="box-daily-expense">
-                <div className="header-daily-expense">
-                    <div className="label">
-                        Expense Daily
-                    </div>
-                    <div>
-                        <button className="add-expense-btn" onClick={this.handleShow}>
-                            <span className="icon-plus"><i className="fas fa-plus"></i></span> add
-                        </button>
-                    </div>
+  render() {
+    console.log(this.props.date)
+
+  return (
+      <div className="box-daily-expense">
+        <div className="header-daily-expense">
+          <div className="label">Expense Daily</div>
+          <div>
+            <button className="add-expense-btn" onClick={this.show}>
+              <span className="icon-plus">
+                <i className="fas fa-plus" />
+              </span>{' '}
+              add
+            </button>
+          </div>
+        </div>
+        <div className="form-add-expense">
+          <form onSubmit={this.submitAdd}>
+            <div className="form-add-exp-wrapper">
+              <div className="form-left">
+                <div className="expense-mode-btn-wrapper btn-container">
+                  <input
+                    type="button"
+                    className={ (this.state.type === 'income') ? 'exp-button-active' : 'exp-button-inactive' }
+                    name="type"
+                    value="income"
+                    onClick={(e) => this.handleChange(e)}
+                  />
+                  <input
+                    type="button"
+                    className={ (this.state.type === 'expense') ? 'exp-button-active' : 'exp-button-inactive' }
+                    name="type"
+                    value="expense"
+                    onClick={(e) => this.handleChange(e)}
+                  />
                 </div>
-                <div className={(this.state.show? "from-add-expense" : "nofrom-add-expense")}>
-                    <form onSubmit={this.submitAdd}>
-                        <div className="form-add-exp-wrapper">
-                            <div className="form-left">
-                                <div>
-                                    amount
-                            <input
-                                        type="number"
-                                        value={this.state.amount}
-                                        name="amount"
-                                        onChange={this.handleChange}>
-                                    </input>
-                                </div>
 
-                                <div>
-                                    Remark
-                            <input
-                                        type="text"
-                                        name="remark"
-                                        value={this.state.remark}
-                                        onChange={this.handleChange}
-                                    ></input>
-                                </div>
-
-
-                                <select
-                                    name="type"
-                                    value={this.state.type}
-                                    onChange={this.handleChange}>
-                                    <option value="expense">Expense</option>
-                                    <option value="income">Income</option>
-                                </select>
-                            </div>
-
-                            <div><button type="submit"> เพิ่มเข้าสู่ประวัติ </button></div>
-                        </div>
-                    </form>
+                <div className='field-container'>
+                  <div className='field-topic'>Amount</div>
+                  <input 
+                    type="number"
+                    name="amount"
+                    className='minimal-input'
+                    contenteditable='true'
+                    value={this.state.amount}
+                    onChange={this.handleChange}
+                  />
                 </div>
-                <div className="expense-list-wrapper">
-                    <ExpenseList date={this.props.date}/>
+
+                <div className='field-container'>
+                  <div className='field-topic'>Remark</div>
+                  <input
+                    type="text"
+                    name="remark"
+                    className='minimal-input'
+                    value={this.state.remark}
+                    onChange={this.handleChange}
+                  />
                 </div>
+
+              </div>
+
+              <div className='btn-container'>
+                <button className='submit-btn' type="submit"> Submit </button>
+              </div>
             </div>
-        );
-    }
+          </form>
+        </div>
+        <div className="expense-list-wrapper">
+          <ExpenseList date={this.props.date} />
+        </div>
+      </div>
+    )
+  }
 }
 
-
 const mapStateToProps = (state) => ({
-    exp: state.exp
+  exp: state.exp,
 })
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        createTransaction: dispatch.exp.createTransaction
-    }
+  return {
+    createTransaction: dispatch.exp.createTransaction,
+  }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(DailyExpense);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DailyExpense)

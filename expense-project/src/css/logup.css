@@ -10,7 +10,6 @@ div {
 
   height: 100%;
 }
-
 .column{
   flex-direction: column;
 }

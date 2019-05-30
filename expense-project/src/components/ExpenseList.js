@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+
 import ExpenseListItem from './ExpenseListItem';
 import { connect } from 'react-redux'
 class ExpenseList extends Component {
@@ -12,7 +14,8 @@ class ExpenseList extends Component {
         const result = data.filter(function(el){
             let dateSelect = new Date(dateSelected[0]).getDate()+"/"+new Date(dateSelected[0]).getMonth()+"/"+new Date(dateSelected[0]).getFullYear()
             let dateExpense  = new Date(el.date).getDate()+"/"+new Date(el.date).getMonth()+"/"+new Date(el.date).getFullYear();
-            return dateSelect == dateExpense
+            dateSelect = dateExpense
+            return dateSelect
         })
        const cleanData = result.map((item)=>{
            console.log(item)

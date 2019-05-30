@@ -21,6 +21,7 @@ class signup extends Component {
     try {
       await signup(this.state)
       console.log('signup success')
+      console.log(this.props.user.user_id)
       if (this.props.user.user_id) {
         this.props.history.push('/expense')
       }
