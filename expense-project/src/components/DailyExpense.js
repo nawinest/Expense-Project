@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/expense.css'
 import { connect } from 'react-redux'
+
 // import DatePicker from 'react-date-picker';
 
 import ExpenseList from './ExpenseList'
@@ -11,11 +12,7 @@ class DailyExpense extends Component {
     type: 'expense',
   }
 
-  // componentWillUpdate(prevProps,prevState){
-  //   if(prevState !== this.state){
-  //     this.setState(this.state)
-  //   }
-  // }
+  
 
   componentDidMount() {}
 
@@ -36,7 +33,8 @@ class DailyExpense extends Component {
 
   render() {
     console.log(this.props.date)
-    return (
+
+  return (
       <div className="box-daily-expense">
         <div className="header-daily-expense">
           <div className="label">Expense Daily</div>
@@ -49,50 +47,45 @@ class DailyExpense extends Component {
             </button>
           </div>
         </div>
-        <div className="from-add-expense">
+        <div className="form-add-expense">
           <form onSubmit={this.submitAdd}>
             <div className="form-add-exp-wrapper">
               <div className="form-left">
-                <div className="expense-mode-btn-wrapper">
-                  <input
-                    type="button"
-                    className={ (this.state.type === 'expense') ? 'exp-button-active' : 'exp-button-inactive' }
-                    style={{
-                      width: '25%',
-                      border: 'none',
-                    }}
-                    name="type"
-                    value="expense"
-                    onClick={(e) => this.handleChange(e)}
-                  />
+                <div className="expense-mode-btn-wrapper btn-container">
                   <input
                     type="button"
                     className={ (this.state.type === 'income') ? 'exp-button-active' : 'exp-button-inactive' }
-                    style={{
-                      width: '25%',
-                      border: 'none',
-                    }}
                     name="type"
                     value="income"
                     onClick={(e) => this.handleChange(e)}
                   />
+                  <input
+                    type="button"
+                    className={ (this.state.type === 'expense') ? 'exp-button-active' : 'exp-button-inactive' }
+                    name="type"
+                    value="expense"
+                    onClick={(e) => this.handleChange(e)}
+                  />
                 </div>
 
-                <div>
-                  amount
-                  <input
+                <div className='field-container'>
+                  <div className='field-topic'>Amount</div>
+                  <input 
                     type="number"
-                    value={this.state.amount}
                     name="amount"
+                    className='minimal-input'
+                    contenteditable='true'
+                    value={this.state.amount}
                     onChange={this.handleChange}
                   />
                 </div>
 
-                <div>
-                  Remark
+                <div className='field-container'>
+                  <div className='field-topic'>Remark</div>
                   <input
                     type="text"
                     name="remark"
+                    className='minimal-input'
                     value={this.state.remark}
                     onChange={this.handleChange}
                   />
@@ -100,8 +93,8 @@ class DailyExpense extends Component {
 
               </div>
 
-              <div>
-                <button type="submit"> Submit </button>
+              <div className='btn-container'>
+                <button className='submit-btn' type="submit"> Submit </button>
               </div>
             </div>
           </form>

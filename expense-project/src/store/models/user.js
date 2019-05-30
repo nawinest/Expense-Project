@@ -54,8 +54,7 @@ export const user = {
         password: payload.password,
       }
       const res = await request.post('/users', info)
-      res ? dispatch.user.login(payload)
-        : console.log('signup fail')
+      res ? dispatch.user.login(payload) : console.log('signup fail')
     },
   }),
   selectors: {
