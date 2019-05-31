@@ -32,7 +32,6 @@ class Header extends Component {
     let username = ''
 
     if (this.props.user.username) {
-      console.log(this.props.user)
       isLogin = true;
       username = this.props.user.username
     }

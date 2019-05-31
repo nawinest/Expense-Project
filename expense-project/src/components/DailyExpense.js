@@ -37,7 +37,7 @@ class DailyExpense extends Component {
     this.setState({isShow:!isShowBuffer})
   }
   render() {
-    console.log(this.props.date)
+    
 
     return (
       <div className="box-daily-expense">

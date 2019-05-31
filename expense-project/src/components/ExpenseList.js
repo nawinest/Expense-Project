@@ -10,15 +10,19 @@ class ExpenseList extends Component {
     }
 
     renderExpenseListItem = (data) => {
+        
         const dateSelected = this.props.date
+
         const result = data.filter(function(el){
             let dateSelect = new Date(dateSelected[0]).getDate()+"/"+new Date(dateSelected[0]).getMonth()+"/"+new Date(dateSelected[0]).getFullYear()
             let dateExpense  = new Date(el.date).getDate()+"/"+new Date(el.date).getMonth()+"/"+new Date(el.date).getFullYear();
-            dateSelect = dateExpense
-            return dateSelect
+            if(dateSelect === dateExpense){
+                return dateSelect
+            }
+            return null;
+            
         })
        const cleanData = result.map((item)=>{
-           console.log(item)
            return (
             <ExpenseListItem data={item} key={item.trans_id}/>
            )
@@ -27,6 +31,7 @@ class ExpenseList extends Component {
     }
 
     render() {
+        
         const data = this.props.exp.expenseData
         let cleanData = ''
         if (data) {
